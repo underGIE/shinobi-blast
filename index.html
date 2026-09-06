@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shinobi Blast — turn-based artillery castle siege, free in your browser</title>
+<meta name="description" content="Shinobi Blast: aim, fire and breach the enemy keep. Turn-based artillery siege with ninja and samurai champions. Play free in your browser — no install.">
+<meta property="og:title" content="Shinobi Blast">
+<meta property="og:description" content="Turn-based artillery castle siege. Play free in your browser.">
+<meta property="og:image" content="img/siege.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="play/index.icon.png">
+<style>
+:root{--bg:#0b0a10;--bg2:#15121f;--panel:#1c1727;--ink:#f3e7c6;--muted:#b7ab94;--gold:#e0b04e;--gold2:#f6d77a;--red:#d14b4b;--blue:#4f8fe0}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Segoe UI',Roboto,'Noto Sans',Arial,sans-serif;line-height:1.55}
+a{color:var(--gold2)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+header{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 20%,#2a1b3d 0%,var(--bg) 70%)}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:56px 0 40px}
+.hero img.logo{width:100%;max-width:440px;filter:drop-shadow(0 10px 30px rgba(0,0,0,.7))}
+.hero h1{font-size:clamp(28px,4vw,44px);margin:0 0 10px;letter-spacing:.02em}
+.hero p.lead{font-size:18px;color:var(--muted);margin:0 0 26px}
+.btn{display:inline-block;padding:16px 34px;border-radius:12px;font-weight:800;font-size:20px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:#1a1204;background:linear-gradient(180deg,var(--gold2),var(--gold));box-shadow:0 8px 24px rgba(224,176,78,.35);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(224,176,78,.5)}
+.btn.small{padding:12px 22px;font-size:15px}
+.note{font-size:13px;color:var(--muted);margin-top:12px}
+.shot{border-radius:14px;overflow:hidden;border:1px solid rgba(246,215,122,.25);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.shot img{display:block;width:100%;height:auto}
+section{padding:48px 0;border-top:1px solid rgba(255,255,255,.06)}
+h2{font-size:26px;margin:0 0 22px;letter-spacing:.04em;text-transform:uppercase;color:var(--gold2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:var(--panel);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:20px}
+.card h3{margin:0 0 8px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.gallery figure{margin:0}
+.gallery figcaption{font-size:13px;color:var(--muted);padding:8px 2px 0}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}
+td:first-child{white-space:nowrap;color:var(--gold2);font-weight:700;width:36%}
+kbd{background:#2a2338;border:1px solid #3d3450;border-bottom-width:3px;border-radius:6px;padding:1px 7px;font-family:inherit;font-size:13px}
+.champs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.champ{background:var(--bg2);border-radius:12px;padding:14px;border-top:3px solid var(--gold)}
+.champ.ranged{border-top-color:var(--blue)}.champ.melee{border-top-color:var(--red)}
+.champ b{display:block;font-size:16px}.champ span{font-size:13px;color:var(--muted)}
+footer{padding:36px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid rgba(255,255,255,.06)}
+.cta-band{text-align:center;padding:56px 0;background:radial-gradient(ellipse at 50% 100%,#2a1b3d 0%,var(--bg) 70%)}
+@media (max-width:820px){.hero{grid-template-columns:1fr;padding:36px 0 28px;text-align:center}.hero img.logo{max-width:320px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hero">
+    <div>
+      <img class="logo" src="logo.png" alt="Shinobi Blast">
+      <h1>Aim. Fire. Breach the keep.</h1>
+      <p class="lead">Turn-based artillery castle siege. Pick three champions, read the wind, pull back and let it fly — crack the enemy walls, open a lane, and blow up their core before they blow up yours.</p>
+      <a class="btn" href="play/">▶ Play in browser</a>
+      <div class="note">Free · no install · desktop browser recommended (Chrome, Firefox, Safari, Edge); on a phone, play in landscape. ~45 MB first load, then cached.</div>
+    </div>
+    <div class="shot"><img src="img/siege.jpg" alt="Shinobi Blast siege — blue team aiming an arc across the gap at the red castle"></div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>How a match plays</h2>
+    <div class="grid">
+      <div class="card"><h3>1 · Draft your three</h3><p>Eight champions, three roles. Ranged shinobi arc shots through the wind, samurai raid the enemy castle in person, ninjas slip inside and set it on fire.</p></div>
+      <div class="card"><h3>2 · Two actions, any split</h3><p>Every turn: two actions across your team. Lob a shot, send a raid one step, commit arson, plant a trap, patch a wall — each costs one. The castle is a 3×3 building of rooms; champions inside intact rooms are HIDDEN, and walls eat the hit.</p></div>
+      <div class="card"><h3>3 · Break in — or burn it</h3><p>Crack a wall and the room behind is exposed; a breach opens a <em>lane</em> that makes core hits land harder. Samurai cross under fire and STRIKE in melee. Ninja fires spread, climb, and leave burnt scars that stop hiding anyone. Repairs: three a match.</p></div>
+      <div class="card"><h3>4 · Overdrive ends it</h3><p>Round cap 12; from round 8 the garrison fires back every turn and nothing gets repaired. Matches end — by core kill, by wipe, or by the clock. No stalling.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Champions</h2>
+    <div class="champs">
+      <div class="champ ranged"><b>Kuro</b><span>Kunai Volley · Straight Arrow — wall-hugger</span></div>
+      <div class="champ ranged"><b>Yumi</b><span>Fire Arrow · Flame Pot — high perch</span></div>
+      <div class="champ melee"><b>Tetsu</b><span>Odachi Wave — iron stance, windproof cleave</span></div>
+      <div class="champ melee"><b>Raijin</b><span>Thunder Hammer — AoE slam</span></div>
+      <div class="champ"><b>Kage</b><span>Chain Sickle · Shadow Bomb — smoke step</span></div>
+      <div class="champ"><b>Saizo</b><span>Twin Shuriken · Decoy Bomb — trapsmith</span></div>
+      <div class="champ ranged"><b>Hana</b><span>Gale Fan — wind-bender</span></div>
+      <div class="champ melee"><b>Goro</b><span>Chain Hammer — siege breaker</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Screens</h2>
+    <div class="gallery">
+      <figure class="shot"><img src="img/overview.jpg" alt="Full-field map view of both castles" loading="lazy"><figcaption>MAP — the whole field, both castles, the gap between.</figcaption></figure>
+      <figure class="shot"><img src="img/lobby.jpg" alt="Dojo lobby — buildings, quests, team" loading="lazy"><figcaption>Your dojo — upgrade buildings, pick your team, run quests.</figcaption></figure>
+      <figure class="shot"><img src="img/trophy.jpg" alt="Trophy road progression" loading="lazy"><figcaption>Trophy road — win matches, climb tiers, open chests.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Controls</h2>
+    <table>
+      <tr><td>Pick a champion</td><td>Click them (or <kbd>Tab</kbd>)</td></tr>
+      <tr><td>Move</td><td>Click a green marker (<kbd>A</kbd>/<kbd>D</kbd> slot, <kbd>W</kbd>/<kbd>S</kbd> tier)</td></tr>
+      <tr><td>Aim + fire</td><td>Press on your champion, drag back, release. Short pull = cancel. Right-click / <kbd>Esc</kbd> aborts.</td></tr>
+      <tr><td>Weapon slot</td><td><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> or click the chip</td></tr>
+      <tr><td>Special</td><td><kbd>G</kbd> — one per champion per match</td></tr>
+      <tr><td>Trap / Repair</td><td><kbd>T</kbd> arm a trap · <kbd>R</kbd> repair a wall</td></tr>
+      <tr><td>Raid (samurai)</td><td><kbd>Q</kbd> or the gold ⚔ chip — step out, cross the courtyard, break in, STRIKE walls, defenders and the core in melee</td></tr>
+      <tr><td>Infiltrate (ninja)</td><td><kbd>Q</kbd> or the gold ⚔ chip — DASH the whole lane in one action (50% to slip interception), SLIP IN past any gate, then per action: ARSON the room (<kbd>Q</kbd>), POISON it (<kbd>T</kbd> / ☠ chip), SABOTAGE the ceiling (<kbd>R</kbd> / ⛏ chip), VANISH home (<kbd>V</kbd> / ⌂ chip)</td></tr>
+      <tr><td>Extinguish</td><td><kbd>X</kbd> or the ≈ EXTINGUISH chip — a champion in or beside a burning room of its own castle douses it (no scar, costs the action)</td></tr>
+      <tr><td>End turn</td><td><kbd>E</kbd></td></tr>
+      <tr><td>Turn rule</td><td>TWO actions per turn, split any way — a lob, a raid step, a strike, an infiltrate verb, an extinguish, a trap or a repair each cost one.</td></tr>
+    </table>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="wrap">
+    <a class="btn" href="play/">▶ Play Shinobi Blast</a>
+    <div class="note">Hotseat VERSUS mode for two players on one keyboard · solo BATTLE vs. AI with selectable difficulty.</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">Shinobi Blast is an in-development game by Avi (Playmason). Built with Godot 4. Progress saves in your browser. Feedback welcome.</div>
+</footer>
+</body>
+</html>
